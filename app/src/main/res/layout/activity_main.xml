@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:paddingBottom="16dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
 
             android:gravity="bottom|end"
-            android:text="90"
+            android:text="0"
             style="@style/TextResult"/>
     </LinearLayout>
 
@@ -48,18 +48,67 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:rowCount="5">
+        app:rowCount="6">
 
+
+        <android.widget.Button
+            android:id="@+id/button_fraction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1"
+            android:text="⅟x"
+            android:onClick="onInstantOperationButtonClick"
+            style="@style/OperationButton"/>
+
+        <android.widget.Button
+            android:id="@+id/button_plus_minus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1"
+            android:text="±"
+            style="@style/OperationButton"/>
+
+        <android.widget.Button
+            android:id="@+id/button_square"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1"
+            android:text="x²"
+            android:onClick="onInstantOperationButtonClick"
+
+            style="@style/OperationButton"/>
+
+        <android.widget.Button
+            android:id="@+id/button_root"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            app:layout_rowWeight="1"
+            android:text="√"
+            android:onClick="onInstantOperationButtonClick"
+
+            style="@style/OperationButton"/>
 
         <android.widget.Button
             android:id="@+id/button_clear"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="AC"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="0"
+            app:layout_row="1"
             app:layout_rowWeight="1"
+            android:text="AC"
             android:onClick="onClearClick"
             style="@style/OperationButton"/>
 
@@ -70,7 +119,7 @@
             android:text="\u232b"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="0"
+            app:layout_row="1"
             app:layout_rowWeight="1"
             android:onClick="onBackspaceButtonClick"
             style="@style/OperationButton"/>
@@ -82,9 +131,9 @@
             android:text="%"
             app:layout_column="2"
             app:layout_columnWeight="1"
-            app:layout_row="0"
+            app:layout_row="1"
             app:layout_rowWeight="1"
-            android:onClick="onOperationButtonClick"
+            android:onClick="onInstantOperationButtonClick"
             style="@style/OperationButton"/>
 
         <android.widget.Button
@@ -94,7 +143,7 @@
             android:text="÷"
             app:layout_column="3"
             app:layout_columnWeight="1"
-            app:layout_row="0"
+            app:layout_row="1"
             app:layout_rowWeight="1"
             android:onClick="onOperationButtonClick"
             style="@style/OperationButton"/>
@@ -106,7 +155,7 @@
             android:text="7"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="1"
+            app:layout_row="2"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -118,7 +167,7 @@
             android:text="8"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="1"
+            app:layout_row="2"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -130,7 +179,7 @@
             android:text="9"
             app:layout_column="2"
             app:layout_columnWeight="1"
-            app:layout_row="1"
+            app:layout_row="2"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -142,7 +191,7 @@
             android:text="×"
             app:layout_column="3"
             app:layout_columnWeight="1"
-            app:layout_row="1"
+            app:layout_row="2"
             app:layout_rowWeight="1"
             android:onClick="onOperationButtonClick"
             style="@style/OperationButton"/>
@@ -154,7 +203,7 @@
             android:text="4"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="2"
+            app:layout_row="3"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -166,7 +215,7 @@
             android:text="5"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="2"
+            app:layout_row="3"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -178,7 +227,7 @@
             android:text="6"
             app:layout_column="2"
             app:layout_columnWeight="1"
-            app:layout_row="2"
+            app:layout_row="3"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -190,7 +239,7 @@
             android:text="-"
             app:layout_column="3"
             app:layout_columnWeight="1"
-            app:layout_row="2"
+            app:layout_row="3"
             app:layout_rowWeight="1"
             android:onClick="onOperationButtonClick"
             style="@style/OperationButton"/>
@@ -202,7 +251,7 @@
             android:text="1"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="3"
+            app:layout_row="4"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -214,7 +263,7 @@
             android:text="2"
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="3"
+            app:layout_row="4"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -226,7 +275,7 @@
             android:text="3"
             app:layout_column="2"
             app:layout_columnWeight="1"
-            app:layout_row="3"
+            app:layout_row="4"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -238,7 +287,7 @@
             android:text="+"
             app:layout_column="3"
             app:layout_columnWeight="1"
-            app:layout_row="3"
+            app:layout_row="4"
             app:layout_rowWeight="1"
             android:onClick="onOperationButtonClick"
             style="@style/OperationButton"/>
@@ -250,7 +299,7 @@
             android:text="0"
             app:layout_column="0"
             app:layout_columnWeight="1"
-            app:layout_row="4"
+            app:layout_row="5"
             app:layout_rowWeight="1"
             android:onClick="onNumberButtonClick"
             style="@style/NumericButton"/>
@@ -262,7 +311,7 @@
             android:text="."
             app:layout_column="1"
             app:layout_columnWeight="1"
-            app:layout_row="4"
+            app:layout_row="5"
             app:layout_rowWeight="1"
             android:onClick="onCommaButtonClick"
             style="@style/NumericButton"/>
@@ -275,7 +324,7 @@
             app:layout_column="2"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
-            app:layout_row="4"
+            app:layout_row="5"
             app:layout_rowWeight="1"
             android:onClick="onEqualButtonClick"
             style="@style/EqualButton"/>

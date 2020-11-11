@@ -10,6 +10,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
 import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,9 +44,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.run {
-            textViewResult.text = (0.0).roundToInt().toString()
-        }
+//        binding.run {
+//            textViewResult.text = (0.0).roundToInt().toString()
+//        }
     }
 
     fun onNumberButtonClick(view: View?) {
@@ -100,7 +101,9 @@ class MainActivity : AppCompatActivity() {
         isEqualButtonClicked = false
 
         currentNumber = 0.0
+//        currentResult = 0.0
         binding.textViewResult.text = formatDoubleToString(0.0)
+//        binding.textViewFullResult.text = ""
     }
 
     fun onBackspaceButtonClick(view: View?){
@@ -229,5 +232,57 @@ class MainActivity : AppCompatActivity() {
         isFutureOperationButtonClicked = false
         isInstantOperationButtonClicked = false
         isEqualButtonClicked = false
+    }
+
+    fun onInstantOperationButtonClick(view: View?) {
+        val button = view as Button
+        val buttonText = button.text.toString()
+
+        var currentValue: String = binding.textViewResult.text.toString()
+        println(" current value $currentValue")
+        var thisOperationNumber: Double = formatStringToDouble(currentValue)
+
+        currentValue = "(${formatDoubleToString(thisOperationNumber)})"
+
+        when (button.id) {
+            R.id.button_percent -> {
+                println(currentResult)
+                println(thisOperationNumber)
+                thisOperationNumber /= 100
+
+
+//                currentValue = formatDoubleToString(thisOperationNumber)
+//                println(currentValue)
+
+            }
+            R.id.button_root -> thisOperationNumber =  sqrt(thisOperationNumber)
+            R.id.button_square -> thisOperationNumber *= thisOperationNumber
+            R.id.button_fraction -> thisOperationNumber = 1 / thisOperationNumber
+            // Later we use this property to find square root of the provided number.
+
+        }
+
+        when {
+            isInstantOperationButtonClicked -> {
+                historyInstantOperationText = "($historyInstantOperationText)"
+                historyInstantOperationText = StringBuilder().append(buttonText).append(historyInstantOperationText).toString()
+                binding.textViewFullResult.text = if (isEqualButtonClicked) historyInstantOperationText else StringBuilder().append(historyText).append(currentOperation).append(historyInstantOperationText).toString()
+            }
+            isEqualButtonClicked -> {
+                historyInstantOperationText = StringBuilder().append(buttonText).append(currentValue).toString()
+                binding.textViewFullResult.text = historyInstantOperationText
+            }
+            else -> {
+                historyInstantOperationText = StringBuilder().append(buttonText).append(currentValue).toString()
+                binding.textViewFullResult.text = StringBuilder().append(historyText).append(currentOperation).append(historyInstantOperationText).toString()
+            }
+        }
+
+        binding.textViewResult.text = formatDoubleToString(thisOperationNumber)
+
+        if (isEqualButtonClicked) currentResult = thisOperationNumber else currentNumber = thisOperationNumber
+
+        isInstantOperationButtonClicked = true
+        isFutureOperationButtonClicked = false
     }
 }
