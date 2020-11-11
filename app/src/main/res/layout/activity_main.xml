@@ -72,6 +72,7 @@
             app:layout_row="0"
             app:layout_rowWeight="1"
             android:text="±"
+            android:onClick="onPlusMinusButtonClick"
             style="@style/OperationButton"/>
 
         <android.widget.Button

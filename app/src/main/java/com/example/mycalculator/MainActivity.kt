@@ -234,6 +234,29 @@ class MainActivity : AppCompatActivity() {
         isEqualButtonClicked = false
     }
 
+    fun onPlusMinusButtonClick(view: View?){
+        val currentValue: String = binding.textViewResult.text.toString()
+
+        currentNumber = formatStringToDouble(currentValue)
+        if (currentNumber == 0.0) return
+
+        currentNumber *= -1
+        binding.textViewResult.text = formatDoubleToString(currentNumber)
+
+        if (isInstantOperationButtonClicked) {
+            historyInstantOperationText = "($historyInstantOperationText)"
+            historyInstantOperationText = StringBuilder().append("-").append(historyInstantOperationText).toString()
+            binding.textViewFullResult.text = StringBuilder().append(historyText).append(currentOperation).append(historyInstantOperationText).toString()
+        }
+
+        if (isEqualButtonClicked) {
+            currentOperation = mapOperation["INIT"]
+        }
+
+        isFutureOperationButtonClicked = false
+        isEqualButtonClicked = false
+    }
+
     fun onInstantOperationButtonClick(view: View?) {
         val button = view as Button
         val buttonText = button.text.toString()
