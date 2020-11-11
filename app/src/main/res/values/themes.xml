@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.MyCalculator" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,5 +12,38 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="buttonStyle">@style/OperationButton</item>
+
+
+    </style>
+
+    <style name="OperationButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_operation</item>
+        <item name="android:textColor">@drawable/button_operation_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="NumericButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_numeric</item>
+        <item name="android:textColor">@drawable/button_operation_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="EqualButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_equal</item>
+        <item name="android:textColor">@drawable/button_operation_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="TextResult" parent="Widget.AppCompat.TextView">
+        <item name="android:color">@color/orange</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textSize">48sp</item>
     </style>
 </resources>
