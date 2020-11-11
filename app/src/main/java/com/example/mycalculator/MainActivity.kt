@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private var historyInstantOperationText = ""
     private var historyActionList: ArrayList<String> = ArrayList()
 
-    //    enum class Operation { INIT, ADD, SUB, DIV, MUL, EQUAL }
     private val mapOperation = mapOf<String, String>(
         "INIT" to "",
         "ADD" to "+",
@@ -132,7 +131,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun formatStringToDouble(number: String): Double {
-        return useNumberFormat().format(number).toDouble()
+        return useNumberFormat().parse(number).toDouble()
     }
 
     private fun useNumberFormat(): DecimalFormat {
@@ -201,6 +200,28 @@ class MainActivity : AppCompatActivity() {
             StringBuilder().append(historyText).append(button.text.toString()).toString()
 
         isFutureOperationButtonClicked = true
+        isEqualButtonClicked = false
+    }
+
+    fun onCommaButtonClick(view: View?){
+        var currentValue: String = binding.textViewResult.text.toString()
+
+        if (isFutureOperationButtonClicked || isInstantOperationButtonClicked || isEqualButtonClicked) {
+            currentValue = StringBuilder().append("0").append(",").toString()
+            if (isInstantOperationButtonClicked) {
+                historyInstantOperationText = ""
+                binding.textViewFullResult.text = StringBuilder().append(historyText).append(currentOperation).toString()
+            }
+            if (isEqualButtonClicked) currentOperation = mapOperation["INIT"]
+            currentNumber = 0.0
+        } else if (currentValue.contains(",")) {
+            return
+        } else currentValue = StringBuilder().append(currentValue).append(",").toString()
+
+        binding.textViewResult.text = currentValue
+
+        isFutureOperationButtonClicked = false
+        isInstantOperationButtonClicked = false
         isEqualButtonClicked = false
     }
 
