@@ -46,8 +46,6 @@ class MainActivity : AppCompatActivity() {
         binding.run {
             textViewResult.text = (0.0).roundToInt().toString()
         }
-
-
     }
 
     fun onNumberButtonClick(view: View?) {
@@ -105,6 +103,20 @@ class MainActivity : AppCompatActivity() {
         binding.textViewResult.text = formatDoubleToString(0.0)
     }
 
+    fun onBackspaceButtonClick(view: View?){
+        if (isFutureOperationButtonClicked || isInstantOperationButtonClicked || isEqualButtonClicked) return
+
+        var currentValue: String = binding.textViewResult.text.toString()
+
+        val charsLimit = if (currentValue.first().isDigit()) 1 else 2
+
+        currentValue =
+            if (currentValue.length > charsLimit) currentValue.substring(0, currentValue.length - 1) else "0"
+
+        binding.textViewResult.text = currentValue
+        currentNumber = formatStringToDouble(currentValue)
+    }
+
     fun onEqualButtonClick(view: View?) {
 
         if (isFutureOperationButtonClicked) {
@@ -126,13 +138,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun formatDoubleToString(number: Double): String {
-        return useNumberFormat().format(number)
-    }
+    private fun formatDoubleToString(number: Double): String = useNumberFormat().format(number)
 
-    private fun formatStringToDouble(number: String): Double {
-        return useNumberFormat().parse(number).toDouble()
-    }
+    private fun formatStringToDouble(number: String): Double = useNumberFormat().parse(number).toDouble()
 
     private fun useNumberFormat(): DecimalFormat {
 
@@ -180,9 +188,7 @@ class MainActivity : AppCompatActivity() {
     fun onOperationButtonClick(view: View?) {
         val button = view as Button
 
-        if (!isFutureOperationButtonClicked && !isEqualButtonClicked) {
-            calculateResult()
-        }
+        if (!isFutureOperationButtonClicked && !isEqualButtonClicked) calculateResult()
 
         currentOperation = when (button.text.toString()) {
             "+" -> mapOperation["ADD"]
@@ -224,6 +230,4 @@ class MainActivity : AppCompatActivity() {
         isInstantOperationButtonClicked = false
         isEqualButtonClicked = false
     }
-
-
 }
